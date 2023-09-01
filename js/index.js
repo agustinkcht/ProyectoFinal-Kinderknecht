@@ -73,15 +73,14 @@ const getMasInfo = (evento) => {
   const btnComprar = document.getElementById("btnComprar")
   const formCheckout = document.getElementById("formAndCheckout")
 
-  // al dar click en comprar, se muestra el formulario 
+  // al dar click se carga el evento elegido en el local storage, y se muestra el formulario de compra
   btnComprar.addEventListener("click", () => {
-      console.log(selected)
+      localStorage.setItem("Evento Seleccionado", JSON.stringify(selected))
       formCheckout.classList.remove("hidden")
   })
 }
 
 // form y checkout
-
 
 formulario.addEventListener("submit", submitForm)
 
@@ -92,6 +91,9 @@ let inputNombre = form.children[1].value
 let inputApellido = form.children[3].value
 let inputMail = form.children[5].value
 let inputPass = form.children[7].value
+//guardo la data del comprador en el local storage
+localStorage.setItem("Nombre y Apellido Comprador", JSON.stringify(`${inputNombre} ${inputApellido}`))
+localStorage.setItem("Email Comprador", JSON.stringify(inputMail))
 // armo condicionales para prevenir los posibles errores en los inputs, y si todo se cumple bien, se ejecuta la finalizacion de la compra.
 if (inputNombre && inputApellido && inputMail && inputPass) {
   Swal.fire({
